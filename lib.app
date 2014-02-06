@@ -1,8 +1,5 @@
 module elib/elib-ace/lib
 
-
-module elib/elib-utils/ace
-
 section ace editor
 
   // https://github.com/ajaxorg/ace/wiki/Embedding---API
