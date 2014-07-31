@@ -17,7 +17,7 @@ section ace editor
   //     border: 1px solid black;
   //   }
   
-  define requireACE() {
+  define requireACE(lang : String) {
   	includeJS("src/ace.js")
   	case(lang.toLowerCase()) {
   		"scala" {includeJS("src/mode-scala.js")}
@@ -59,7 +59,7 @@ section ace editor
   // todo: adapt size to window document.documentElement.clientWidth
   
   define ace(code: Ref<Text>, lang : String, id: String, readonly: Bool) {
-  	requireACE() 
+  	requireACE(lang) 
   	div[class="aceEditor", id="editor" + id, 
   	    style="position: absolute"
   	         + "; border: 1px solid #999;"
