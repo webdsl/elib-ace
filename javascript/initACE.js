@@ -17,6 +17,12 @@ function javaEditor(id, readonly) {
 function sqlEditor(id, readonly) {
 	aceEditor(id, readonly, require("ace/mode/sql").Mode);
 }
+function htmlEditor(id, readonly) {
+	aceEditor(id, readonly, require("ace/mode/html").Mode);
+}
+function cssEditor(id, readonly) {
+	aceEditor(id, readonly, require("ace/mode/css").Mode);
+}
 
 var autosaving = false;
 var autosavedecided = true;

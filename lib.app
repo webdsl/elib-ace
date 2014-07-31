@@ -18,12 +18,16 @@ section ace editor
   //   }
   
   define requireACE() {
-    includeJS("src/ace.js")
-    includeJS("src/mode-scala.js")
-    includeJS("src/mode-java.js")
-    includeJS("src/mode-javascript.js")
-    includeJS("src/mode-c_cpp.js")
-    includeJS("src/mode-sql.js")
+  	includeJS("src/ace.js")
+  	case(lang.toLowerCase()) {
+  		"scala" {includeJS("src/mode-scala.js")}
+  		"java" {includeJS("src/mode-java.js")}
+  		"c" {includeJS("src/mode-c_cpp.js")}
+		"js" {includeJS("src/mode-javascript.js")}
+      	"sql" {includeJS("src/mode-sql.js")}
+		"css" {includeJS("src/mode-css.js")}
+		"html" {includeJS("src/mode-html.js")}
+    }
     includeJS("src/theme-eclipse.js") 
     includeJS("initACE.js")
   }
@@ -90,6 +94,16 @@ section ace editor
             registerOnload(function() { sqlEditor('~id', ~readonly) });
             </script>
       	}
+		"css" {
+            <script>
+	        registerOnload(function() { cssEditor('~id', ~readonly) });
+	        </script>
+        }
+		"html" {
+            <script>
+	        registerOnload(function() { htmlEditor('~id', ~readonly) });
+	        </script>
+        }
   	}
     // <script>
     //   registerOnload(function() { scalaEditor('~id', ~readonly) });
