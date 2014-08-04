@@ -61,8 +61,7 @@ section ace editor
   define ace(code: Ref<Text>, lang : String, id: String, readonly: Bool) {
   	requireACE(lang) 
   	div[class="aceEditor", id="editor" + id, 
-  	    style="position: absolute"
-  	         + "; border: 1px solid #999;"
+  	    style="border: 1px solid #999;"
   	]{
   	  output(code)
   	}
