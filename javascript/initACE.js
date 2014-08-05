@@ -42,35 +42,37 @@ function aceEditor(id, readonly, mode) {
 		editor.setReadOnly(true);
 	} else {
 		editor.getSession().setTabSize(2);
-		editor.getSession().on('change', function() {
-			console.log('id = ' + id);
-			var textarea = document.getElementById(id);
-			textarea.innerHTML = editor.getSession().getValue();
-			if(!autosavedecided){
-  				if(autosaving || confirm("Enable autosave?")){
-					autosaving = true;
-					setAutoSave();
-				}
-				autosavedecided = true;
-			}
-		});
+		
+		//autosave is disabled
+		
+//		editor.getSession().on('change', function() {
+//			console.log('id = ' + id);
+//			var textarea = document.getElementById(id);
+//			textarea.innerHTML = editor.getSession().getValue();
+//			if(!autosavedecided){
+//  				if(autosaving || confirm("Enable autosave?")){
+//					autosaving = true;
+//					setAutoSave();
+//				}
+//				autosavedecided = true;
+//			}
+//		});
 	}
-
-	var commands = editor.commands;
-
-	commands.addCommand({
-		name : "full-screen",
-		bindKey : {
-			win : "F11",
-			mac : "F11",
-			sender : "editor" + id
-		},
-		exec : function() {
-			fullscreen(this, editor)
+	
+	
+	// add command for all new editors
+	var dom = require("ace/lib/dom")
+	editor.commands.addCommand({
+		name: "Toggle Fullscreen",
+		bindKey: "Alt-Return|F11",
+		exec: function(editor) {
+			dom.toggleCssClass(document.body, "fullScreen")
+			dom.toggleCssClass(editor.container, "fullScreen-editor")
+			editor.resize()
 		}
 	});
 
-	commands.addCommand({
+	editor.commands.addCommand({
 		name : "save",
 		bindKey : {
 			win : "Ctrl-S",
@@ -113,29 +115,29 @@ function setAutoSave() {
 	}, 60000);
 }
 
-/* toggle fullscreen on the ace editor that had the focus */
-function fullscreen(cmd, editor) {
-	var id = '#' + cmd.bindKey.sender
-	var fsDiv = '<div id="fsdiv" style="display:block"><div id="fsinner"></div></div>';
-	var fsMarker = '<div id="fsmarker"></div>';
-	if ($('#fsdiv').length > 0) {
-		// exit FS: move editor to marker, remove fsdiv and marker
-		$(id).insertAfter('#fsmarker');
-		$(id).toggleClass('aceEditorFull aceEditor');
-		$('#fsdiv').remove();
-		$('#fsmarker').remove();
-		$('#subcontain').show();
-		editor.resize();
-		editor.focus();
-	} else {
-		// enter FS: create marker, create fsdiv, reparent editor to fsdiv
-		$('#maincontainer').append(fsDiv);
-		$(id).parent().append(fsMarker);
-		$('#fsmarker').insertAfter($(id));
-		$('#fsinner').append($(id));
-		$(id).toggleClass('aceEditor aceEditorFull');
-		$('#subcontain').hide();
-		editor.resize();
-		editor.focus();
-	}
-}
+///* toggle fullscreen on the ace editor that had the focus */
+//function fullscreen(cmd, editor) {
+//	var id = '#' + cmd.bindKey.sender
+//	var fsDiv = '<div id="fsdiv" style="display:block"><div id="fsinner"></div></div>';
+//	var fsMarker = '<div id="fsmarker"></div>';
+//	if ($('#fsdiv').length > 0) {
+//		// exit FS: move editor to marker, remove fsdiv and marker
+//		$(id).insertAfter('#fsmarker');
+//		$(id).toggleClass('aceEditorFull aceEditor');
+//		$('#fsdiv').remove();
+//		$('#fsmarker').remove();
+//		$('#subcontain').show();
+//		editor.resize();
+//		editor.focus();
+//	} else {
+//		// enter FS: create marker, create fsdiv, reparent editor to fsdiv
+//		$('#maincontainer').append(fsDiv);
+//		$(id).parent().append(fsMarker);
+//		$('#fsmarker').insertAfter($(id));
+//		$('#fsinner').append($(id));
+//		$(id).toggleClass('aceEditor aceEditorFull');
+//		$('#subcontain').hide();
+//		editor.resize();
+//		editor.focus();
+//	}
+//}
