@@ -45,10 +45,10 @@ function aceEditor(id, readonly, mode) {
 		
 		//autosave is disabled
 		
-//		editor.getSession().on('change', function() {
+		editor.getSession().on('change', function() {
 //			console.log('id = ' + id);
-//			var textarea = document.getElementById(id);
-//			textarea.innerHTML = editor.getSession().getValue();
+			var textarea = document.getElementById(id);
+			textarea.innerHTML = editor.getSession().getValue();
 //			if(!autosavedecided){
 //  				if(autosaving || confirm("Enable autosave?")){
 //					autosaving = true;
@@ -56,7 +56,7 @@ function aceEditor(id, readonly, mode) {
 //				}
 //				autosavedecided = true;
 //			}
-//		});
+		});
 	}
 	
 	
