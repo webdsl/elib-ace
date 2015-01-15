@@ -60,10 +60,12 @@ section ace editor
   
   define ace(code: Ref<Text>, lang : String, id: String, readonly: Bool) {
   	requireACE(lang) 
-  	div[class="aceEditor", id="editor" + id, 
-  	    style="border: 1px solid #999;"
-  	]{
-  	  output(code)
+  	div[class="aceContainer"]{
+	  	div[class="aceEditor", id="editor" + id, 
+	  	    style="border: 1px solid #999;"
+	  	]{
+	  	  output(code)
+	  	}
   	}
 
   	input(code)[style="display:none",id=id]
