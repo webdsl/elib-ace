@@ -26,15 +26,17 @@ function cssEditor(id, readonly) {
 
 var autosaving = false;
 var autosavedecided = true;
+var editorInstances = [];
 function aceEditor(id, readonly, mode) {
 	console.log("initializing editor: " + id);
 	var editor = ace.edit("editor" + id);
+	editorInstances.push(editor);
 	editor.setTheme("ace/theme/eclipse");
 
 	editor.getSession().setMode(new mode());
 
 	editor.setShowPrintMargin(false);
-
+	
 	console.log('readonly: ' + readonly);
 
 	if (readonly) {
@@ -113,6 +115,12 @@ function setAutoSave() {
 		save();
 		setAutoSave();
 	}, 60000);
+}
+
+function resizeEditors(){
+	editorInstances.forEach(function(editor) {
+	    editor.resize();
+	});
 }
 
 ///* toggle fullscreen on the ace editor that had the focus */
