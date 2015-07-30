@@ -42,8 +42,8 @@ section ace editor
   	ace(code, lang, tname, readonly)
   }
   
-  define ace(code: Ref<Text>, lang : String, id: String) {  	
-  	ace(code, lang, id, false)
+  define ace(code: Ref<Text>, lang : String, idAttr: String) {  	
+  	ace(code, lang, idAttr, false)
   }
 
   define aceView(code: Ref<Text>, lang : String) {  	
@@ -51,62 +51,62 @@ section ace editor
   	ace(code, lang, tname, true)
   }
     
-  define aceView(code: Ref<Text>, lang : String, id: String) {  	
-  	ace(code, lang, id, true)
+  define aceView(code: Ref<Text>, lang : String, idAttr: String) {  	
+  	ace(code, lang, idAttr, true)
   }
   
   // 619px; height: 500px
   // todo: adapt size to window document.documentElement.clientWidth
   
-  define ace(code: Ref<Text>, lang : String, id: String, readonly: Bool) {
+  define ace(code: Ref<Text>, lang : String, idAttr: String, readonly: Bool) {
   	requireACE(lang) 
   	div[class="aceContainer"]{
-	  	div[class="aceEditor", id="editor" + id, 
+	  	div[class="aceEditor", id="editor" + idAttr, 
 	  	    style="border: 1px solid #999;"
 	  	]{
 	  	  output(code)
 	  	}
   	}
 
-  	input(code)[style="display:none",id=id]
+  	input(code)[style="display:none",id=idAttr]
   	case(lang.toLowerCase()) {
   		"scala" {
   			<script>
-      		registerOnload(function() { scalaEditor('~id', ~readonly) });
+      		registerOnload(function() { scalaEditor('~idAttr', ~readonly) });
     		</script>
   		}
   		"java" {
   			<script>
-      		registerOnload(function() { javaEditor('~id', ~readonly) });
+      		registerOnload(function() { javaEditor('~idAttr', ~readonly) });
     		</script>
   		}
   		"c" {
   			<script>
-      		registerOnload(function() { cEditor('~id', ~readonly) });
+      		registerOnload(function() { cEditor('~idAttr', ~readonly) });
     		</script>
   		}
 		"js" {
             <script>
-            registerOnload(function() { jsEditor('~id', ~readonly) });
+            registerOnload(function() { jsEditor('~idAttr', ~readonly) });
             </script>
       	}
       	"sql" {
             <script>
-            registerOnload(function() { sqlEditor('~id', ~readonly) });
+            registerOnload(function() { sqlEditor('~idAttr', ~readonly) });
             </script>
       	}
 		"css" {
             <script>
-	        registerOnload(function() { cssEditor('~id', ~readonly) });
+	        registerOnload(function() { cssEditor('~idAttr', ~readonly) });
 	        </script>
         }
 		"html" {
             <script>
-	        registerOnload(function() { htmlEditor('~id', ~readonly) });
+	        registerOnload(function() { htmlEditor('~idAttr', ~readonly) });
 	        </script>
         }
   	}
     // <script>
-    //   registerOnload(function() { scalaEditor('~id', ~readonly) });
+    //   registerOnload(function() { scalaEditor('~idAttr', ~readonly) });
     // </script>
   }
