@@ -32,14 +32,12 @@ section ace editor
     includeJS("initACE.js")
   }
   
-  define ace(code: Ref<Text>, lang : String) {  
-  	var tname := getTemplate().getUniqueId()	
-  	ace(code, lang, tname, false)
+  define ace(code: Ref<Text>, lang : String) {  	
+  	ace(code, lang, id, false)
   }
   
   define ace(code: Ref<Text>, lang : String, readonly: Bool) { 
-  	var tname := getTemplate().getUniqueId()
-  	ace(code, lang, tname, readonly)
+  	ace(code, lang, id, readonly)
   }
   
   define ace(code: Ref<Text>, lang : String, idAttr: String) {  	
@@ -47,8 +45,7 @@ section ace editor
   }
 
   define aceView(code: Ref<Text>, lang : String) {  	
-  	var tname := getTemplate().getUniqueId()	
-  	ace(code, lang, tname, true)
+  	ace(code, lang, id, true)
   }
     
   define aceView(code: Ref<Text>, lang : String, idAttr: String) {  	
