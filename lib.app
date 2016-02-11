@@ -18,18 +18,18 @@ section ace editor
   //   }
   
   define requireACE(lang : String) {
-  	includeJS("src/ace.js")
+  	includeJS("src/ace.js?1")
   	case(lang.toLowerCase()) {
-  		"scala" {includeJS("src/mode-scala.js")}
-  		"java" {includeJS("src/mode-java.js")}
-  		"c" {includeJS("src/mode-c_cpp.js")}
-		"js" {includeJS("src/mode-javascript.js")}
-      	"sql" {includeJS("src/mode-sql.js")}
-		"css" {includeJS("src/mode-css.js")}
-		"html" {includeJS("src/mode-html.js")}
+  		"scala" {includeJS("src/mode-scala.js?1")}
+  		"java" {includeJS("src/mode-java.js?1")}
+  		"c" {includeJS("src/mode-c_cpp.js?1")}
+		"js" {includeJS("src/mode-javascript.js?1")}
+      	"sql" {includeJS("src/mode-sql.js?1")}
+		"css" {includeJS("src/mode-css.js?1")}
+		"html" {includeJS("src/mode-html.js?1")}
     }
-    includeJS("src/theme-eclipse.js") 
-    includeJS("initACE.js")
+    includeJS("src/theme-eclipse.js?1") 
+    includeJS("initACE.js?1")
   }
   
   define ace(code: Ref<Text>, lang : String) {  	
