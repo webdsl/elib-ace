@@ -77,11 +77,29 @@ function aceEditor(id, readonly, mode) {
 	editor.commands.addCommand({
 		name : "save",
 		bindKey : {
-			win : "Ctrl-S",
-			mac : "Command-S",
+			win : "Ctrl-S|Alt-S",
+			mac : "Command-S|Alt-S|Ctrl-S",
 			sender : "editor" + id
 		},
 		exec : save
+	});
+	editor.commands.addCommand({
+		name : "run user test",
+		bindKey : {
+			win : "Alt-R",
+			mac : "Alt-R|Ctrl-R",
+			sender : "editor" + id
+		},
+		exec : runUserTest
+	});
+	editor.commands.addCommand({
+		name : "run spec test",
+		bindKey : {
+			win : "Alt-Shift-R",
+			mac : "Alt-Shift-R|Ctrl-Shift-R",
+			sender : "editor" + id
+		},
+		exec : runSpecTest
 	});
 
 	
@@ -104,6 +122,14 @@ function registerOnload(f) {
 
 function save() {
 	$('#save').click();
+}
+
+function runSpecTest() {
+	$('#specTestBtn').click();
+}
+
+function runUserTest() {
+	$('#userTestBtn').click();
 }
 
 /* timer for auto-save */
