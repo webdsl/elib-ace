@@ -26,6 +26,9 @@ function cssEditor(id, readonly) {
 function pythonEditor(id, readonly) {
 	aceEditor(id, readonly, require("ace/mode/python").Mode);
 }
+function plaintextEditor(id, readonly) {
+	aceEditor(id, readonly, require("ace/mode/plain_text").Mode);
+}
 
 var autosaving = false;
 var autosavedecided = true;

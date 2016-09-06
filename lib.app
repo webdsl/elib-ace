@@ -28,6 +28,7 @@ section ace editor
 		"css" {includeJS("src/mode-css.js?1")}
 		"html" {includeJS("src/mode-html.js?1")}
 		"python" {includeJS("src/mode-python.js?1")}
+		default {includeJS("src/mode-plain_text.js?1")}
     }
     includeJS("src/theme-eclipse.js?1") 
     includeJS("initACE.js?1")
@@ -106,6 +107,11 @@ section ace editor
 		"python" {
             <script>
 	        registerOnload(function() { pythonEditor('~idAttr', ~readonly) });
+	        </script>
+        }
+		default {
+            <script>
+	        registerOnload(function() { plaintextEditor('~idAttr', ~readonly) });
 	        </script>
         }
   	}
