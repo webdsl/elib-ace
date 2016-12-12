@@ -22,6 +22,7 @@ section ace editor
   	case(lang.toLowerCase()) {
   		"scala" {includeJS("src/mode-scala.js?1")}
   		"java" {includeJS("src/mode-java.js?1")}
+  		"java8" {includeJS("src/mode-java.js?1")}
   		"c" {includeJS("src/mode-c_cpp.js?1")}
 		"js" {includeJS("src/mode-javascript.js?1")}
       	"sql" {includeJS("src/mode-sql.js?1")}
@@ -75,6 +76,11 @@ section ace editor
     		</script>
   		}
   		"java" {
+  			<script>
+      		registerOnload(function() { javaEditor('~idAttr', ~readonly) });
+    		</script>
+  		}
+  		"java8" {
   			<script>
       		registerOnload(function() { javaEditor('~idAttr', ~readonly) });
     		</script>
