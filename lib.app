@@ -21,6 +21,7 @@ section ace editor
   	includeJS("src/ace.js?1")
   	case(lang.toLowerCase()) {
   		"scala" {includeJS("src/mode-scala.js?1")}
+  		"scala212" {includeJS("src/mode-scala.js?1")}
   		"java" {includeJS("src/mode-java.js?1")}
   		"java8" {includeJS("src/mode-java.js?1")}
   		"c" {includeJS("src/mode-c_cpp.js?1")}
@@ -71,6 +72,11 @@ section ace editor
   	input(code)[style="display:none",id=idAttr]
   	case(lang.toLowerCase()) {
   		"scala" {
+  			<script>
+      		registerOnload(function() { scalaEditor('~idAttr', ~readonly) });
+    		</script>
+  		}
+  		"scala212" {
   			<script>
       		registerOnload(function() { scalaEditor('~idAttr', ~readonly) });
     		</script>
