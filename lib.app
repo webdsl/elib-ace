@@ -30,6 +30,8 @@ section ace editor
 		"css" {includeJS("src/mode-css.js?1")}
 		"html" {includeJS("src/mode-html.js?1")}
 		"python" {includeJS("src/mode-python.js?1")}
+		"python2" {includeJS("src/mode-python.js?1")}
+		"python3" {includeJS("src/mode-python.js?1")}
 		default {includeJS("src/mode-plain_text.js?1")}
     }
     includeJS("src/theme-eclipse.js?1") 
@@ -117,6 +119,16 @@ section ace editor
 	        </script>
         }
 		"python" {
+            <script>
+	        registerOnload(function() { pythonEditor('~idAttr', ~readonly) });
+	        </script>
+        }
+		"python2" {
+            <script>
+	        registerOnload(function() { pythonEditor('~idAttr', ~readonly) });
+	        </script>
+        }
+		"python3" {
             <script>
 	        registerOnload(function() { pythonEditor('~idAttr', ~readonly) });
 	        </script>
