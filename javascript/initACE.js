@@ -1,33 +1,5 @@
-function scalaEditor(id, readonly) {
-	aceEditor(id, readonly, require("ace/mode/scala").Mode);
-}
-
-function cEditor(id, readonly) {
-	aceEditor(id, readonly, require("ace/mode/c_cpp").Mode);
-}
-
-function jsEditor(id, readonly) {
-        aceEditor(id, readonly, require("ace/mode/javascript").Mode);
-}
-
-function javaEditor(id, readonly) {
-    console.log("initACE java")
-	aceEditor(id, readonly, require("ace/mode/java").Mode);
-}
-function sqlEditor(id, readonly) {
-	aceEditor(id, readonly, require("ace/mode/sql").Mode);
-}
-function htmlEditor(id, readonly) {
-	aceEditor(id, readonly, require("ace/mode/html").Mode);
-}
-function cssEditor(id, readonly) {
-	aceEditor(id, readonly, require("ace/mode/css").Mode);
-}
-function pythonEditor(id, readonly) {
-	aceEditor(id, readonly, require("ace/mode/python").Mode);
-}
-function plaintextEditor(id, readonly) {
-	aceEditor(id, readonly, require("ace/mode/plain_text").Mode);
+function createAceEditor(id, readonly, mode) {
+  aceEditor(id, readonly, require("ace/mode/" + mode).Mode);
 }
 
 var autosaving = false;

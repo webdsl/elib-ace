@@ -19,21 +19,7 @@ section ace editor
   
   define requireACE(lang : String) {
   	includeJS("src/ace.js?1")
-  	case(lang.toLowerCase()) {
-  		"scala" {includeJS("src/mode-scala.js?1")}
-  		"scala212" {includeJS("src/mode-scala.js?1")}
-  		"java" {includeJS("src/mode-java.js?1")}
-  		"java8" {includeJS("src/mode-java.js?1")}
-  		"c" {includeJS("src/mode-c_cpp.js?1")}
-		"js" {includeJS("src/mode-javascript.js?1")}
-      	"sql" {includeJS("src/mode-sql.js?1")}
-		"css" {includeJS("src/mode-css.js?1")}
-		"html" {includeJS("src/mode-html.js?1")}
-		"python" {includeJS("src/mode-python.js?1")}
-		"python2" {includeJS("src/mode-python.js?1")}
-		"python3" {includeJS("src/mode-python.js?1")}
-		default {includeJS("src/mode-plain_text.js?1")}
-    }
+    includeJS("src/mode-" + lang + ".js?1")
     includeJS("src/theme-eclipse.js?1") 
     includeJS("initACE.js?1")
   }
@@ -70,76 +56,8 @@ section ace editor
 	  	  output(code)
 	  	}
   	}
-
   	input(code)[style="display:none",id=idAttr]
-  	case(lang.toLowerCase()) {
-  		"scala" {
-  			<script>
-      		registerOnload(function() { scalaEditor('~idAttr', ~readonly) });
-    		</script>
-  		}
-  		"scala212" {
-  			<script>
-      		registerOnload(function() { scalaEditor('~idAttr', ~readonly) });
-    		</script>
-  		}
-  		"java" {
-  			<script>
-      		registerOnload(function() { javaEditor('~idAttr', ~readonly) });
-    		</script>
-  		}
-  		"java8" {
-  			<script>
-      		registerOnload(function() { javaEditor('~idAttr', ~readonly) });
-    		</script>
-  		}
-  		"c" {
-  			<script>
-      		registerOnload(function() { cEditor('~idAttr', ~readonly) });
-    		</script>
-  		}
-		"js" {
-            <script>
-            registerOnload(function() { jsEditor('~idAttr', ~readonly) });
-            </script>
-      	}
-      	"sql" {
-            <script>
-            registerOnload(function() { sqlEditor('~idAttr', ~readonly) });
-            </script>
-      	}
-		"css" {
-            <script>
-	        registerOnload(function() { cssEditor('~idAttr', ~readonly) });
-	        </script>
-        }
-		"html" {
-            <script>
-	        registerOnload(function() { htmlEditor('~idAttr', ~readonly) });
-	        </script>
-        }
-		"python" {
-            <script>
-	        registerOnload(function() { pythonEditor('~idAttr', ~readonly) });
-	        </script>
-        }
-		"python2" {
-            <script>
-	        registerOnload(function() { pythonEditor('~idAttr', ~readonly) });
-	        </script>
-        }
-		"python3" {
-            <script>
-	        registerOnload(function() { pythonEditor('~idAttr', ~readonly) });
-	        </script>
-        }
-		default {
-            <script>
-	        registerOnload(function() { plaintextEditor('~idAttr', ~readonly) });
-	        </script>
-        }
-  	}
-    // <script>
-    //   registerOnload(function() { scalaEditor('~idAttr', ~readonly) });
-    // </script>
+    <script>
+      registerOnload( function(){ createAceEditor('~idAttr', ~readonly, '~lang') } );
+    </script>
   }
