@@ -6,7 +6,7 @@ section ace editor
   
   // usage:
   // form{
-  //   ace(foo.code, "foo") // to edit text value of foo.code, use "foo" once per page
+  //   codeEditor(foo.code, "foo", false) // to edit text value of foo.code, use "foo" once per page
   // }
   
   // make sure to add the following to css
