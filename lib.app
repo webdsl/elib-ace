@@ -49,8 +49,8 @@ section ace editor
   
   define ace(code: Ref<Text>, lang : String, idAttr: String, readonly: Bool) {
   	requireACE(lang) 
-  	div[class="aceContainer"]{
-	  	div[class="aceEditor", id="editor" + idAttr, 
+  	div[class="editorContainer"]{
+	  	div[class="aceEditor", id="aceEditor_" + idAttr, 
 	  	    style="border: 1px solid #999;"
 	  	]{
 	  	  output(code)
@@ -58,6 +58,15 @@ section ace editor
   	}
   	input(code)[style="display:none",id=idAttr]
     <script>
-      registerOnload( function(){ createAceEditor('~idAttr', ~readonly, '~lang') } );
+      registerOnload( function(){
+      	createAceEditor('~idAttr', ~readonly, '~lang')
+      } );
+    </script>
+    makeAceEditorResizable()
+  }
+  
+  template makeAceEditorResizable(){
+  	<script>
+  	    makeEditorResizable();
     </script>
   }

@@ -2,11 +2,11 @@ function createAceEditor(id, readonly, mode) {
   aceEditor(id, readonly, require("ace/mode/" + mode).Mode);
 }
 
-var editorInstances = [];
+var aceEditorInstances = [];
 function aceEditor(id, readonly, mode) {
 	console.log("initializing editor: " + id);
-	var editor = ace.edit("editor" + id);
-	editorInstances.push(editor);
+	var editor = ace.edit("aceEditor_" + id);
+	aceEditorInstances.push(editor);
 	editor.setTheme("ace/theme/eclipse");
 
 	editor.getSession().setMode(new mode());
@@ -72,8 +72,42 @@ function aceEditor(id, readonly, mode) {
 	console.log("initialized editor: " + id);
 }
 
-function resizeEditors(){
-	editorInstances.forEach(function(editor) {
+function resizeAceEditors(){
+	aceEditorInstances.forEach(function(editor) {
 	    editor.resize();
 	});
+}
+
+/**
+ * Determines whether any Ace editor has unsaved changes.
+ * 
+ * @returns True when there are unsaved changes; otherwise, false.
+ */
+function aceHasUnsavedChanges(){
+	if(typeof aceEditorInstances !== 'undefined'){
+    	var unsavedChanges = false;
+    	aceEditorInstances.forEach(function(editor) {
+			if(!unsavedChanges && ! editor.session.getUndoManager().isClean()){
+				unsavedChanges = true;
+			} 
+		});
+		return unsavedChanges;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Sets all Ace editors to have no unsaved changes.
+ */
+function aceMarkClean() {
+	aceEditorInstances.forEach(function(editor) {
+		editor.session.getUndoManager().markClean();
+	});
+}
+
+function aceOnChange(callback) {
+	aceEditorInstances.forEach(function(editor) {
+  		editor.session.on('change', callback);
+	})
 }
