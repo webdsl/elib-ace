@@ -62,11 +62,4 @@ section ace editor
       	createAceEditor('~idAttr', ~readonly, '~lang')
       } );
     </script>
-    makeAceEditorResizable()
-  }
-  
-  template makeAceEditorResizable(){
-  	<script>
-  	    makeEditorResizable();
-    </script>
   }
