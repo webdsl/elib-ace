@@ -21,7 +21,7 @@ section ace editor
   	includeJS("src/ace.js?1")
     includeJS("src/mode-" + lang + ".js?1")
     includeJS("src/theme-eclipse.js?1") 
-    includeJS("initACE.js?2")
+    includeJS("initACE.js?3")
   }
   
   define ace(code: Ref<Text>, lang : String) {  	
