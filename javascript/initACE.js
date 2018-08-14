@@ -23,7 +23,7 @@ function aceEditor(id, readonly, mode) {
 		
 		editor.getSession().on('change', function() {
 			var textarea = document.getElementById(id);
-			textarea.innerHTML = editor.getSession().getValue();
+			textarea.textContent = editor.getSession().getValue();
 		});
 	}
 	
