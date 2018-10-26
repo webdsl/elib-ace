@@ -48,7 +48,8 @@ section ace editor
   // todo: adapt size to window document.documentElement.clientWidth
   
   define ace(code: Ref<Text>, lang : String, idAttr: String, readonly: Bool) {
-  	requireACE(lang) 
+  	var normalizedLang: String := getAceLanguageId(lang)
+  	requireACE(normalizedLang) 
   	div[class="editorContainer"]{
 	  	div[class="aceEditor", id="aceEditor_" + idAttr, 
 	  	    style="border: 1px solid #999;"
@@ -59,7 +60,25 @@ section ace editor
   	input(code)[style="display:none",id=idAttr]
     <script>
       registerOnload( function(){
-      	createAceEditor('~idAttr', ~readonly, '~lang')
+      	createAceEditor('~idAttr', ~readonly, '~normalizedLang')
       } );
     </script>
   }
+
+function getAceLanguageId( language: String ): String {
+  case( language.toLowerCase() ){
+    "scala"    { return "scala"; }
+    "scala212" { return "scala"; }
+    "java"     { return "java"; }
+    "java8"    { return "java"; }
+    "c"        { return "c_cpp"; }
+    "js"       { return "javascript"; }
+    "sql"      { return "sql"; }
+    "css"      { return "css"; }
+    "html"     { return "html"; }
+    "python"   { return "python"; }
+    "python2"  { return "python"; }
+    "python3"  { return "python"; }
+    default    { return "plain_text"; }
+  }
+}
