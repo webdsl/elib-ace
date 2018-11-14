@@ -18,6 +18,7 @@ section ace editor
   //   }
   
   define requireACE(lang : String) {
+    includeJS( IncludePaths.jQueryJS() )
   	includeJS("src/ace.js?1")
     includeJS("src/mode-" + lang + ".js?1")
     includeJS("src/theme-eclipse.js?1") 
@@ -59,7 +60,7 @@ section ace editor
   	}
   	input(code)[style="display:none",id=idAttr]
     <script>
-      registerOnload( function(){
+      $(document).ready( function(){
       	createAceEditor('~idAttr', ~readonly, '~normalizedLang')
       } );
     </script>

@@ -39,34 +39,39 @@ function aceEditor(id, readonly, mode) {
 			editor.resize()
 		}
 	});
-
-	editor.commands.addCommand({
-		name : "save",
-		bindKey : {
-			win : "Ctrl-S|Alt-S",
-			mac : "Command-S|Alt-S|Ctrl-S",
-			sender : "editor" + id
-		},
-		exec : save
-	});
-	editor.commands.addCommand({
-		name : "run user test",
-		bindKey : {
-			win : "Alt-R",
-			mac : "Alt-R|Ctrl-R",
-			sender : "editor" + id
-		},
-		exec : runUserTest
-	});
-	editor.commands.addCommand({
-		name : "run spec test",
-		bindKey : {
-			win : "Alt-Shift-R",
-			mac : "Alt-Shift-R|Ctrl-Shift-R",
-			sender : "editor" + id
-		},
-		exec : runSpecTest
-	});
+    if(save){
+		editor.commands.addCommand({
+			name : "save",
+			bindKey : {
+				win : "Ctrl-S|Alt-S",
+				mac : "Command-S|Alt-S|Ctrl-S",
+				sender : "editor" + id
+			},
+			exec : save
+		});
+    }
+    if(runUserTest){
+		editor.commands.addCommand({
+			name : "run user test",
+			bindKey : {
+				win : "Alt-R",
+				mac : "Alt-R|Ctrl-R",
+				sender : "editor" + id
+			},
+			exec : runUserTest
+		});
+    }
+    if(runSpecTest){
+		editor.commands.addCommand({
+			name : "run spec test",
+			bindKey : {
+				win : "Alt-Shift-R",
+				mac : "Alt-Shift-R|Ctrl-Shift-R",
+				sender : "editor" + id
+			},
+			exec : runSpecTest
+		});
+    }
 
 	
 	console.log("initialized editor: " + id);
