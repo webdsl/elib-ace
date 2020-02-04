@@ -21,8 +21,8 @@ function aceEditor(id, readonly, mode) {
 	} else {
 		editor.getSession().setTabSize(2);
 		
+		var textarea = document.getElementById(id);
 		editor.getSession().on('change', function() {
-			var textarea = document.getElementById(id);
 			textarea.textContent = editor.getSession().getValue();
 		});
 	}
