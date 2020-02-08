@@ -73,7 +73,7 @@ section ace editor
       output(code)
     }
     span[style="display:none", id=id]{
-      input(code as ref Text)
+      input(code)
     }
     
     <script>
@@ -94,7 +94,7 @@ section ace editor
       });
       var textinput = document.getElementById("~id").childNodes[0];
       editor.getSession().on('change', function(){
-        textinput.textContent = editor.getSession().getValue();
+        textinput.value = editor.getSession().getValue();
       });
       // make mouse position clipping nicer
       editor.renderer.screenToTextCoordinates = function(x, y){
