@@ -19,7 +19,11 @@ function aceEditor(id, readonly, mode) {
 		console.log('setting editor to readonly');
 		editor.setReadOnly(true);
 	} else {
-		editor.getSession().setTabSize(2);
+		if(editor.getSession().getMode().$id.indexOf("python") > -1){
+			editor.getSession().setTabSize(4);
+		} else {
+			editor.getSession().setTabSize(2);
+		}
 		
 		var textarea = document.getElementById(id);
 		editor.getSession().on('change', function() {
