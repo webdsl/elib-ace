@@ -27,7 +27,9 @@ function aceEditor(id, readonly, mode) {
 		
 		var textarea = document.getElementById(id);
 		editor.getSession().on('change', function() {
-			textarea.textContent = editor.getSession().getValue();
+			var value = editor.getSession().getValue();
+			textarea.textContent = value;
+			checkForUnsupportedCharacters( value );
 		});
 	}
 	
