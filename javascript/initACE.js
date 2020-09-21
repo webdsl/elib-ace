@@ -1,5 +1,6 @@
 function createAceEditor(id, readonly, mode) {
-  aceEditor(id, readonly, require("ace/mode/" + mode).Mode);
+  var m = require("ace/mode/" + mode) || require("ace/mode/plain_text");
+  aceEditor(id, readonly, m.Mode);
 }
 
 var aceEditorInstances = [];

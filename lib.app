@@ -20,6 +20,7 @@ section ace editor
   define requireACE(lang : String){
     includeJS( IncludePaths.jQueryJS() )
     includeJS("src/ace.js?1")
+    includeJS("src/mode-plain_text.js?1")
     includeJS("src/mode-" + lang + ".js?1")
     includeJS("src/theme-eclipse.js?1")
     includeJS("initACE.js?3")
@@ -125,6 +126,6 @@ function getAceLanguageId( language: String ): String {
     "python"   { return "python"; }
     "python2"  { return "python"; }
     "python3"  { return "python"; }
-    default    { return "plain_text"; }
+    default    { return language.toLowerCase(); }
   }
 }
