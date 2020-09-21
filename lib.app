@@ -3,12 +3,12 @@ module elib/elib-ace/lib
 section ace editor
 
   // https://github.com/ajaxorg/ace/wiki/Embedding---API
-  
+
   // usage:
   // form{
   //   codeEditor(foo.code, "foo", false) // to edit text value of foo.code, use "foo" once per page
   // }
-  
+
   // make sure to add the following to css
   //   #editor<foo> {
   //     position: relative;
@@ -16,37 +16,37 @@ section ace editor
   //     height: 300px;
   //     border: 1px solid black;
   //   }
-  
+
   define requireACE(lang : String){
     includeJS( IncludePaths.jQueryJS() )
     includeJS("src/ace.js?1")
     includeJS("src/mode-plain_text.js?1")
     includeJS("src/mode-" + lang + ".js?1")
     includeJS("src/theme-eclipse.js?1")
-    includeJS("initACE.js?3")
+    includeJS("initACE.js?4")
   }
-  
+
   define ace(code: Ref<Text>, lang : String){
     ace(code, lang, id, false)
   }
-  
+
   define ace(code: Ref<Text>, lang : String, readonly: Bool){
     ace(code, lang, id, readonly)
   }
-  
+
   define ace(code: Ref<Text>, lang : String, idAttr: String){
     ace(code, lang, idAttr, false)
   }
-  
+
   define aceView(code: Ref<Text>, lang : String){
     ace(code, lang, id, true)
   }
-  
+
   define aceView(code: Ref<Text>, lang : String, idAttr: String){
     ace(code, lang, idAttr, true)
   }
-  
-  
+
+
   // 619px; height: 500px
   // todo: adapt size to window document.documentElement.clientWidth
   define ace(code: Ref<Text>, lang : String, idAttr: String, readonly: Bool){
@@ -66,9 +66,9 @@ section ace editor
       } );
     </script>
   }
-  
+
   template inputAce(code : Ref<String>, aceLang: String){
-  	
+
     requireACE(aceLang)
     div[class="ace-single-line", id="aceEditor_"+id, style="border: 1px solid #999;"]{
       output(code)
@@ -76,7 +76,7 @@ section ace editor
     span[style="display:none", id=id]{
       input(code)
     }
-    
+
     <script>
       var el = document.getElementById("aceEditor_~id")
       var editor = ace.edit(el);
@@ -107,9 +107,9 @@ section ace editor
       };
       // disable Enter Shift-Enter keys
       editor.commands.bindKey("Enter|Shift-Enter", "null")
-      
+
     </script>
-    
+
   }
 
 function getAceLanguageId( language: String ): String {
