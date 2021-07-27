@@ -19,11 +19,12 @@ section ace editor
 
   define requireACE(lang : String){
     includeJS( IncludePaths.jQueryJS() )
-    includeJS("src/ace.js?1")
-    includeJS("src/mode-plain_text.js?1")
-    includeJS("src/mode-" + lang + ".js?1")
-    includeJS("src/theme-eclipse.js?1")
-    includeJS("initACE.js?4")
+    includeJS("src/ace.js")
+    includeJS("src/ext-language_tools.js")
+    includeJS("src/mode-plain_text.js")
+    includeJS("src/mode-" + lang + ".js")
+    includeJS("src/theme-eclipse.js")
+    includeJS("initACE.js")
   }
 
   define ace(code: Ref<Text>, lang : String){

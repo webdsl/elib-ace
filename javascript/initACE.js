@@ -6,7 +6,13 @@ function createAceEditor(id, readonly, mode) {
 var aceEditorInstances = [];
 function aceEditor(id, readonly, mode) {
   console.log("initializing editor: " + id);
+  ace.require("ace/ext/language_tools");
   var editor = ace.edit("aceEditor_" + id);
+  editor.setOptions({
+      enableBasicAutocompletion: true,
+      enableSnippets: true,
+      enableLiveAutocompletion: false
+  });
   aceEditorInstances.push(editor);
   editor.setTheme("ace/theme/eclipse");
 
