@@ -52,15 +52,22 @@ section ace editor
   // todo: adapt size to window document.documentElement.clientWidth
   define ace(code: Ref<Text>, lang : String, idAttr: String, readonly: Bool){
     var normalizedLang := getAceLanguageId(lang)
+    var req := getRequestParameter( idAttr )
     requireACE(normalizedLang)
     div[class="editorContainer"]{
       div[class="aceEditor", id="aceEditor_" + idAttr,
       style="border: 1px solid #999;"
       ]{
-        output(code)
+        //In case of a validation error, render the submitted text 
+        if(req != null){
+          text(req)
+        } else {
+          output(code)
+        }
       }
     }
-    input(code)[style="display:none",id=idAttr]
+    inputTextInternal(code, idAttr)[style="display:none",id=idAttr]
+
     <script>
       $(document).ready( function(){
         createAceEditor('~idAttr', ~readonly, '~normalizedLang')
@@ -69,15 +76,20 @@ section ace editor
   }
 
   template inputAce(code : Ref<String>, aceLang: String){
+    var req := getRequestParameter( id )
 
     requireACE(aceLang)
     div[class="ace-single-line", id="aceEditor_"+id, style="border: 1px solid #999;"]{
-      output(code)
+        //In case of a validation error, render the submitted text 
+        if(req != null){
+          output(req)
+        } else {
+          output(code)
+        }
     }
-    span[style="display:none", id=id]{
-      input(code)
-    }
-
+    
+    inputStringInternal(code, id)[style="display:none"]
+    
     <script>
       var el = document.getElementById("aceEditor_~id")
       var editor = ace.edit(el);
@@ -94,7 +106,7 @@ section ace editor
       editor.on("paste", function(e){
         e.text = e.text.replace(/[\r\n]+/g, " ");
       });
-      var textinput = document.getElementById("~id").childNodes[0];
+      var textinput = document.getElementsByName("~id")[0];
       editor.getSession().on('change', function(){
         textinput.value = editor.getSession().getValue();
       });
