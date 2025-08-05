@@ -36,7 +36,6 @@ function aceEditor(id, readonly, mode) {
     editor.getSession().on('change', function() {
       var value = editor.getSession().getValue();
       textarea.textContent = value;
-      checkForUnsupportedCharacters( value );
     });
   }
 
